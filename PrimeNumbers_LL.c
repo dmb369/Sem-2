@@ -1,4 +1,4 @@
-// Create a Linked list of size n and print it. (Using Malloc function).
+// Create a linked list of size n and find prime number in list.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,7 +29,12 @@ int main()
     temp=start;
     while(temp!=NULL)
     {
-        printf("%d ",temp->data);
+        int i;
+        for (i=2; i<=((temp->data)/2); i++)
+        {
+            if ((temp->data)%i==0) break;
+        }
+        if ((i-1) == (temp->data)/2) printf("%d ",temp->data);
         temp=temp->next;
     }
     

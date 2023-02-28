@@ -1,4 +1,5 @@
-// Create a Linked list of size n and print it. (Using Malloc function).
+// Replace the first and second nodes of the linked list. 
+// In the case of only one node output will be 0.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,6 +26,11 @@ int main()
         temp->next=new_node;
         temp=temp->next;
     }
+    
+    temp=start;
+    int swap=temp->data;
+    temp->data=temp->next->data;
+    temp->next->data=swap;
     
     temp=start;
     while(temp!=NULL)
