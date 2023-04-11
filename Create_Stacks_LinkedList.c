@@ -5,25 +5,29 @@
 
 #define MAX 10
 
-int count=1;
-int first_time=0;
+int top=-1;
 
 struct node
 {
-    struct node *pre;
     int data;
     struct node *next;
 };
 
 int isFull()
 {
-    if (count==MAX) return 1;
+    if (top==MAX-1) return 1;
+    else return 0;
+}
+
+int isEmpty()
+{
+    if (top==-1) return 1;
     else return 0;
 }
 
 int main()
 {
-    struct node *start, *temp, *new_node;
+    struct node *start, *temp, *new_node, *temp1;
     int choice;
     
     printf("1.Push\n");
@@ -34,6 +38,7 @@ int main()
     printf("Enter your choice:\n");
     while(1)
     {
+        int n=top;
         scanf("%d",&choice);
         
         switch (choice)
@@ -44,41 +49,60 @@ int main()
             scanf("%d",&new_node->data);
             
             if (isFull()) printf("Stack Overflow\n");
-            else if (first_time==0)
+            else 
             {
-                start=new_node;
-                new_node->pre=NULL;
-                temp=start;
-                first_time=-1;
-                count++;
-            }
-            else
-            {   
-                temp->next=new_node;
-                new_node->pre=temp;
-                count++;
+                if (top==-1)
+                {
+                    start=new_node;
+                    temp=start;
+                    top++;
+                }
+                else
+                {   
+                    int n=top;
+                    temp=start;
+                    while(n--)
+                    {
+                        temp=temp->next;
+                    }
+                    temp->next=new_node;
+                    top++;
+                }
             }
             break;
         
             case 2:
-            if (start==NULL)
+            if (isEmpty())
             {
                 printf("Stack Underflow\n");
                 exit(1);
             }
+            int count=top;
+            temp=start;
+            while(count--)
+            {
+                temp1=temp;
+                temp=temp->next;
+            }
             printf("Popped item is: %d\n",temp->data);
-            temp->pre->next=NULL;
+            temp1->next=NULL;
+            top--;
             free(temp);
-            count--;
             break;
             
             case 3:
-            if(start==NULL)
+            
+            if(isEmpty())
             {
                 printf("Stack Underflow\n");
                 exit(1);
             }
-
+            int n=top;
+            temp=start;
+            while(n--)
+            {
+                temp=temp->next;
+            }
             printf("Item at the top is %d\n",temp->data);
             break;
             
