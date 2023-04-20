@@ -81,7 +81,7 @@ void delete_from_front()
         exit(1);
     }
     
-    if (front==0) 
+    if (front==rear) 
     {
         front=-1;
         rear=-1;
