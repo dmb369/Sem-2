@@ -1,9 +1,6 @@
 // C program to create following menu driven operation 
 // on Double Ended Queue using Array
 
-//C program to create following menu driven operation 
-//on Circular Queue using array
-
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -121,6 +118,29 @@ void delete_from_rear()
     printf("Dequeued element from rear is %d\n",x);
 }
 
+void display() {
+    if (front == -1) {
+        printf("Deque is empty\n");
+        return;
+    }
+    printf("Deque elements are: ");
+    int i;
+    if (front <= rear) {
+        for (i = front; i <= rear; i++) {
+            printf("%d ", queue_arr[i]);
+        }
+    } else {
+        for (i = 0; i <= rear; i++) {
+            printf("%d ", queue_arr[i]);
+        }
+        for (i = front; i < MAX; i++) {
+            printf("%d ", queue_arr[i]);
+        }
+        
+    }
+    printf("\n");
+}
+
 int main()
 {
     int choice,item;
@@ -129,7 +149,8 @@ int main()
     printf("2.Insert from rear\n");
     printf("3.Delete from front\n");
     printf("4.Delete from rear\n");
-    printf("5.Quit\n");
+    printf("5.Display\n");
+    printf("6.Quit\n");
     printf("Enter your choice:\n");
     while(1)
     {
@@ -158,6 +179,10 @@ int main()
             break;
             
             case 5:
+            display();
+            break;
+            
+            case 6:
             exit(1);
             
             default:
